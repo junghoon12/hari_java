@@ -1,39 +1,5 @@
-네트워크(Network)
-- 여러 대의 컴퓨터를 통신 회선으로 연결한 것.
-  * 홈 네트워크 : 컴퓨터가 방마다 있고, 이들 컴퓨터를 유선, 무선 등의 통신 회선으로 연결.
-  * 지역 네트워크 : 회사, 건물, 특정 영역에 존재하는 컴퓨터를 통신 회선으로 연결한 것.
-  * 인터넷 : 지역 네트워크를 통신 회선으로 연결한 것.
+oracle 11g 파일 다운로드 사이트 주소
+www.oracle.com/database/technologies/xe-prior-release-downloads.html
 
-서버와 클라이언트
-- 서버 : - 서비스를 제공하는 프로그램
-                 예) 웹 서버, FTP 서버, DBMS, 메신저 서버
-        - 클라이언트의 연결을 수락하고, 요청 내용을 처리한 후 응답을 보내는 역할을 함.
-
-- 클라이언트 : - 서비스를 받는 프로그램
-                         예) 웹 브라우저, FTP 클라이언트, 메신저
-             - 네트워크 데이터를 필요로 하는 모든 애플리케이션이 해당.
-
-IP 주소와 포트
-- IP(Internet Protocol) 주소
-  * 네트워크 상에서 컴퓨터를 식별하는 번호
-  * 네트워크 어뎁터(랜카드)마다 할당
-  
-- 포트(port)
-  - 같은 컴퓨터 내에서 프로그램을 식별하는 번호.
-  
-- InetAddress로 IP 주소 얻기
-  - InetAddress local = InetAddress.getLocalHost();
-  
-- TCP(Transmission Control Protocol)
-  - 다른 두 시스템 간의 신뢰성이 있는 데이터의 전송을 관장하는 통신 프로토콜.
-  - 연결 지향적 프로토콜 ==> 시간이 소요가 됨.
-  - 통신 선로 고정 ==> 전송 속도가 느려질 수 있음.
-  - 데이터를 정확하고 안정적으로 전달.
-
-
-
-
-
-
-
-
+sql developer 파일 다운로드 사이트 주소
+www.oracle.com/database/sqldeveloper/technologies/download/
