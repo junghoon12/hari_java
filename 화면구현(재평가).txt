@@ -1,0 +1,322 @@
+전체 코드
+
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import "./App.css";
+
+const App = () => {
+  const [messages, setMessages] = useState([
+    { id: 1, writer: 'Writer 1', message: 'Message 1', write_date: '2022-01-01' },
+    { id: 2, writer: 'Writer 2', message: 'Message 2', write_date: '2022-02-01' },
+    { id: 3, writer: 'Writer 3', message: 'Message 3', write_date: '2022-03-01' },
+  ]);
+
+  const [newMessage, setNewMessage] = useState({
+    id: '',
+    writer: '',
+    message: '',
+    write_date: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewMessage({ ...newMessage, [name]: value });
+  };
+
+  const handleAddMessage = () => {
+
+    if (!newMessage.id || !newMessage.writer || !newMessage.message || !newMessage.write_date) {
+      alert('모든 입력값을 채워주세요.');
+      return;
+    }
+
+    const isDuplicate = messages.some(message => String(message.id) === newMessage.id);
+    if (isDuplicate) {
+      alert('이미 존재하는 ID입니다.');
+      setNewMessage({ ...newMessage, ['id']: '' });
+      return;
+    }
+
+    setMessages([...messages, newMessage]);
+    setNewMessage({ id: '', writer: '', message: '', write_date: '' });
+  };
+
+  const handleDeleteMessage = (id) => {
+    const updatedMessages = messages.filter((message) => message.id !== id);
+    setMessages(updatedMessages);
+  };
+
+  return (
+    <Router>
+      <div className='container'>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">List</Link>
+            </li>
+            <li>
+              <Link to="/create">Add New Message</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home messages={messages} onDeleteMessage={handleDeleteMessage} />} />
+          <Route path="/create" element={<CreateMessage newMessage={newMessage} onInputChange={handleInputChange} onAddMessage={handleAddMessage} />} />
+        </Routes>
+      </div>
+    </Router>
+  );
+};
+
+const Home = (props) => {
+  const { messages, onDeleteMessage } = props;
+
+  return (
+    <div>
+      <h1>Messages</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Writer</th>
+            <th>Message</th>
+            <th>Write Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          {messages.map((message) => (
+            <tr key={message.id}>
+              <td>{message.id}</td>
+              <td>{message.writer}</td>
+              <td>{message.message}</td>
+              <td>{message.write_date}</td>
+              <td>
+                <button onClick={() => onDeleteMessage(message.id)}>Delete</button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+};
+
+const CreateMessage = (props) => {
+  const { newMessage, onInputChange, onAddMessage } = props;
+
+  return (
+    <div>
+      <h1>Create Message</h1>
+      <form>
+        <div>
+          <input
+            type="number"
+            name="id"
+            value={newMessage.id}
+            onChange={onInputChange}
+            placeholder="Input message id"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="writer"
+            value={newMessage.writer}
+            onChange={onInputChange}
+            placeholder="Input message writer"
+          />
+        </div>
+        <div>
+          <input
+            type="text"
+            name="message"
+            value={newMessage.message}
+            onChange={onInputChange}
+            placeholder="Input message content"
+          />
+        </div>
+        <div>
+          <label>작성일 : </label>
+          <input
+            type="date"
+            name="write_date"
+            value={newMessage.write_date}
+            onChange={onInputChange}
+          />
+        </div>
+      </form>
+      <button onClick={onAddMessage}>Add Message</button>
+    </div>
+  );
+};
+
+export default App;
+==========================================================
+
+3. 3. 기능은 신규 등록 ( create ) , 목록 출력 ( read ) , 삭제 ( delete ) 를 구현합니다.
+
+const [messages, setMessages] = useState([
+    { id: 1, writer: 'Writer 1', message: 'Message 1', write_date: '2022-01-01' },
+    { id: 2, writer: 'Writer 2', message: 'Message 2', write_date: '2022-02-01' },
+    { id: 3, writer: 'Writer 3', message: 'Message 3', write_date: '2022-03-01' },
+  ]);
+
+  const [newMessage, setNewMessage] = useState({
+    id: '',
+    writer: '',
+    message: '',
+    write_date: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setNewMessage({ ...newMessage, [name]: value });
+  };
+
+  const handleAddMessage = () => {
+
+    if (!newMessage.id || !newMessage.writer || !newMessage.message || !newMessage.write_date) {
+      alert('모든 입력값을 채워주세요.');
+      return;
+    }
+
+    const isDuplicate = messages.some(message => String(message.id) === newMessage.id);
+    if (isDuplicate) {
+      alert('이미 존재하는 ID입니다.');
+      setNewMessage({ ...newMessage, ['id']: '' });
+      return;
+    }
+
+    setMessages([...messages, newMessage]);
+    setNewMessage({ id: '', writer: '', message: '', write_date: '' });
+  };
+
+  const handleDeleteMessage = (id) => {
+    const updatedMessages = messages.filter((message) => message.id !== id);
+    setMessages(updatedMessages);
+  };
+
+==========================================================
+
+4. 데이터 및 데이터 관련 기능은 모두 App 컴포넌트에서 제작하여 각 컴포넌트에 필요한 항목만 전달합니다.
+
+
+1. <Home messages={messages} onDeleteMessage={handleDeleteMessage} />
+
+2. {<CreateMessage newMessage={newMessage} onInputChange={handleInputChange} onAddMessage={handleAddMessage} />
+
+
+==========================================================
+
+5. UI 는 다음 이미지와 같이 작성 합니다. ( 이 곳에 App.css 코드를 올려주세요. )
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+nav {
+  overflow: hidden;
+}
+
+nav li {
+  float: left;
+  width: 50%;
+  list-style-type: none;
+}
+
+.container {
+  width: 400px;
+  margin: auto;
+  text-align: center;
+  border: 1px solid black;
+}
+
+.container table {
+  width: 100%;
+}
+
+==========================================================
+
+6. 각 UI의 전환은 react-router-dom 라이브러리를 사용합니다.
+
+1. import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+
+2.
+<Router>
+      <div className='container'>
+        <nav>
+          <ul>
+            <li>
+              <Link to="/">List</Link>
+            </li>
+            <li>
+              <Link to="/create">Add New Message</Link>
+            </li>
+          </ul>
+        </nav>
+
+        <Routes>
+          <Route path="/" element={<Home messages={messages} onDeleteMessage={handleDeleteMessage} />} />
+          <Route path="/create" element={<CreateMessage newMessage={newMessage} onInputChange={handleInputChange} onAddMessage={handleAddMessage} />} />
+        </Routes>
+      </div>
+    </Router>
+===============================================================
+
+7. 데이터 저장소는 객체 배열을 사용하며 state 로 관리합니다.
+         > 객체 구성 요소는 id(고유번호) , writer(작성자) , message(내용) , write_date(작성일)
+
+  const [messages, setMessages] = useState([
+    { id: 1, writer: 'Writer 1', message: 'Message 1', write_date: '2022-01-01' },
+    { id: 2, writer: 'Writer 2', message: 'Message 2', write_date: '2022-02-01' },
+    { id: 3, writer: 'Writer 3', message: 'Message 3', write_date: '2022-03-01' },
+  ]);
+
+===============================================================
+
+8.  신규 등록 페이지에서 addMessage 버튼을 누르면 입력 후 , 모든 입력 필드는 깨끗하게 비워주세요.
+
+ const handleAddMessage = () => {
+
+    if (!newMessage.id || !newMessage.writer || !newMessage.message || !newMessage.write_date) {
+      alert('모든 입력값을 채워주세요.');
+      return;
+    }
+
+    const isDuplicate = messages.some(message => String(message.id) === newMessage.id);
+    if (isDuplicate) {
+      alert('이미 존재하는 ID입니다.');
+      setNewMessage({ ...newMessage, ['id']: '' });
+      return;
+    }
+
+    setMessages([...messages, newMessage]);
+    setNewMessage({ id: '', writer: '', message: '', write_date: '' });
+  };
+===============================================================
+
+9. 모든 값은 반드시 입력되어야 합니다.
+
+if (!newMessage.id || !newMessage.writer || !newMessage.message || !newMessage.write_date) {
+      alert('모든 입력값을 채워주세요.');
+      return;
+    }
+
+===============================================================
+
+10. 중복되는 ID 는 입력 될 수 없습니다.
+
+const isDuplicate = messages.some(message => String(message.id) === newMessage.id);
+    if (isDuplicate) {
+      alert('이미 존재하는 ID입니다.');
+      setNewMessage({ ...newMessage, ['id']: '' });
+      return;
+    }
+
+
+===============================================================
+
