@@ -1,0 +1,107 @@
+눙력 단위 : 인터페이스 구현
+
+
+요구사항 1. import할 파일명과 프로젝트 내에 import할 경로를 서술하시오.
+   
+   ==> WEB-INF/lib 폴더 아래에 ojbc6.jar 파일과 mybatis-3.4.6.jar 파일 복사
+
+===============================================================
+
+요구사항 2. org.kh.member.model.vo 패키지 밑에 MemberVO 클래스, mapper/member 폴더 밑에 
+                member-mapper.xml 파일을 생성하고 resources 폴더 아래 mybatis-config.xml 리소스 
+               파일에 mapper xml파일을 등록하고 VO객체의 별칭을 등록한다.
+
+   ==> <configuration>
+             <!-- 별칭 등록 -->
+             <typeAliases>
+                  <typeAlias type="org.kh.member.model.vo.MemberVO" alias="member"/>
+             </typeAliases>
+             <environments default="development">
+                  <environment id="development">
+                       <transactionManager type="JDBC"/>
+                       <dataSource type="POOLED">
+                            <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                            <property name="url" value="jdbc:oracle:thin:@127.0.0.1:1521:xe"/>
+                            <property name="username" value="MYBATIS"/>
+                            <property name="password" value="MYBATIS"/>
+                       </dataSource>
+                  </environment>
+            </environments>
+
+           <!-- 회원정보(member)에서 사용될 Mapper 파일 등록 -->
+           <mappers>
+                <mapper resource="mapper/member/member-mapper.xml"/>
+           </mappers>
+       </configuration>
+
+===============================================================
+
+요구사항 3. SqlSession을 생성하기 위한 코드를 작성하시오.
+
+   ==> public class SqlSessionTemplate {
+  	public static SqlSession getSqlSession() {
+  	SqlSession session = null;
+  	String resource = "mybatis-config.xml";
+  	try {
+   	      // 해당 리소스 경로(xml파일)로 input 스트림 생성
+   	      InputStream is = Resources.getResourceAsStream(resource); 
+  
+   	      // SqlSessionFactory를 만들 수 있는 팩토리 빌더 생성
+                    SqlSessionFactoryBuilder builder = new SqlSessionFactoryBuilder();   
+
+                   // 팩토리 빌드를 가지고 실제 사용할 SqlSessionFactory 생성
+                   SqlSessionFactory factory = builder.build(is); 
+  
+                  // SqlSessionFactory를 가지고 sqlSession 생성(false값은 autoCommit을 안한다는 뜻)
+                  session = factory.openSession(false);   
+             } catch (IOException e) {
+                  e.printStackTrace();
+             }  
+               return session; // 생성된 SqlSession 리턴
+           }  
+       }
+
+
+===============================================================
+
+요구사항 4. xml 태그를 이용하여 Query문을 작성하시오(단, 네임스페이스는 mybatis, id는 insertMember로 한다.)
+
+   ==>  <?xml version="1.0" encoding="UTF-8"?>
+           <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+           <mapper namespace="mybatis"> 
+                 <insert id="insertMember" parameterType="member">
+                        INSERT INTO MEMBER VALUES (SEQ_MEMBER.NEXTVAL, #{userId}, #{userPw}, #{userName}, #{userAddr}, DEFAULT)
+                </insert>
+           </mapper>
+
+
+===============================================================
+
+요구사항 5. Service 클래스에서 공통으로 만들어 놓은 SqlSession을 이용하여 연결을 생성한 후 커밋과 롤백을 처리하도록 작성하시오.
+
+   ==>  public class MemberServiceImpl{
+  	   MemberDAOLogic memberDAO = new MemberDAOLogic();
+  	   public int insertMember(MemberVO mOne) {
+   	   SqlSession session = SqlSessionTemplate.getSqlSession();
+   	   int result = memberDAO.insertMember(session, mOne);
+   	   if(result>0) {
+    	          session.commit();
+  	   }else {
+                        session.rollback();
+                 }
+                 session.close();
+                 return result;
+                }
+           } 
+
+===============================================================
+
+요구사항 6. Service 클래스에서 넘겨준 Session을 이용하여 Database에서 쿼리문을 실행하는 코드를 작성하시오.
+
+   ==> public class MemberDAO {
+               public int insertMember(SqlSession session, MemberVO mOne) {
+                     int result = session.insert("mybatis.insertMember", mOne);
+                     System.out.println("member@MemberDAO="+result);
+                     return result;
+              }
+          }
