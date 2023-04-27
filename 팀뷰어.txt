@@ -8,11 +8,11 @@
    
    여기서 TeamViewer13 메뉴를 클릭하여 Windows 메뉴를 확인 후
    
-   TeamViewer
+      * TeamViewer
    
-   TeamViewer QuickSupport
+      * TeamViewer QuickSupport
    
-   TeamViewer QuickJoin
+      * TeamViewer QuickJoin
    
    메뉴들이 나오는데 여기서 첫번째 TeamViewer 를 클릭하여 프로그램을 다운을 받는다.
    
