@@ -1,0 +1,127 @@
+능력단위 : 애플리케이션 설계
+
+
+2) 요구사항에 맞게 서비스(Service), 리파지토리(Repository) 구현
+
+2-1) 서비스 이름을 작명 규칙과 개체에 맞게 작성
+      ==>
+      학생 서비스 인터페이스 이름 : StudentService
+      학생 서비스 구현체 이름 : StudentServiceImpl
+      매니저 서비스 인터페이스 이름 : ManagerService
+      매니저 서비스 구현체 이름 : ManagerServiceImpl
+
+2-2) 리파지토리 이름을 작명 규칙과 개체에 맞게 작성
+       ==>
+       학생 리파지토리 인터페이스 이름 : StudentRepository
+       학생 리파지토리 구현체 이름 : StudentRepositoryImpl
+       매니저 리파지토리 인터페이스 이름 : ManagerRepository
+       매니저 리파지토리 구현체 이름 : ManagerRepositoryImpl
+
+3) 요구사항에 맞게 DTO 클래스의 코드를 작성
+
+3-1) 학생 DTO 클래스의 코드를 제시된 개체에 맞게 작성
+       ==>
+       public class StudentDTO{
+       private int studentNumber;
+       private String studentName;
+       private int koreanScore;
+       private int englishScore;
+       private int mathScore;
+   
+       public int getStudentNumber() {
+            return studentNumber;
+       }
+ 
+       public void setStudentNumber(int studentNumber) {
+           this.studentNumber = studentNumber;
+       }
+ 
+       public String getStudentName() {
+            return studentName;
+       }
+ 
+       public void setStudentName(String studentName) {
+           this.studentName = studentName;
+       }
+ 
+      public int getKoreanScore() {
+         return koreanScore;
+      }
+ 
+      public void setKoreanScore(int koreanScore) {
+           this.koreanScore = koreanScore;
+      }
+ 
+      public int getEnglishScore() {
+           return englishScore;
+      }
+ 
+      public void setEnglishScore(int englishScore) {
+           this.englishScore = englishScore;
+      }
+ 
+      public int getMathScore() {
+          return mathScore;
+      }
+ 
+     public void setMathScore(int mathScore) {
+         this.mathScore = mathScore;
+     }
+ 
+}
+
+3-2) 매니저 DTO 클래스의 코드를 제시된 개체에 맞게 작성
+       ==> 
+        public class ManagerDTO {
+
+           private int managerNumber;
+           private String managerName;
+           private String managerHireDate;
+ 
+ 
+           public int getManagerNumber() {
+                return managerNumber;
+           }
+ 
+          public void setManagerNumber(int managerNumber) {
+                this.managerNumber = managerNumber;
+          }
+ 
+          public String getManagerName() {
+               return managerName;
+          }
+ 
+         public void setManagerName(String managerName) {
+               this.managerName = managerName;
+         }
+  
+        public String getManagerHireDate() {
+              return managerHireDate;
+        }
+ 
+       public void setManagerHireDate(String managerHireDate) {
+             this.managerHireDate = managerHireDate;
+       }
+ 
+    }
+
+
+4) 개체에 맞는 테이블 생성 구문 작성
+
+4-1. 학생 개체에 맞는 테이블 생성 구문 작성
+       ==>
+       create table student(
+            student_number number primary key,
+            student_name varchar2(21) not null,
+            korean_score number not null,
+            english_score number not null, 
+            math_score number not null
+      );
+
+4-2. 매니저 개체에 맞는 테이블 생성 구문 작성
+       ==>
+       create table manager(
+            manager_number number primary key,
+            manager_name varchar2(21) not null,
+            manager_hire_date date not null
+       );
