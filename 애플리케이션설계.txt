@@ -1,5 +1,24 @@
 능력단위 : 애플리케이션 설계
 
+1) 컨트롤러 이름 / 컨트롤러 주소 / 컨트롤러 기능별 주소 작성
+
+학생 컨트롤러 이름 : StudentController
+매니저 컨트롤러 이름 : ManagerController
+
+학생 컨트롤러 주소 : /grade/student
+매니저 컨트롤러 주소 : /grade/manager
+
+학생 컨트롤러 처리주소 : 
+ - 등록 : /grade/student/regist
+ - 목록 : /grade/student/list
+ - 수정 : /grade/student/update
+ - 삭제 : /grade/student/delete
+
+매니저 컨트롤러 처리주소 : 
+ - 등록 : /grade/manager/regist
+ - 목록 : /grade/manager/list
+ - 수정 : /grade/manager/update
+ - 삭제 : /grade/manager/delete
 
 2) 요구사항에 맞게 서비스(Service), 리파지토리(Repository) 구현
 
