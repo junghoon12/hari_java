@@ -1,0 +1,70 @@
+평가단위 : 애플리케이션 설계(재평가)
+
+1. 컨트롤러 이름 / 컨트롤러 주소 / 컨트롤러의 기능별 주소 작성
+       ==>
+       상품 컨트롤러 이름 : ProductController
+       판매자 컨트롤러 이름 : SellerController
+
+       상품 컨트롤러 주소 : /market/product
+       판매자 컨트롤러 주소 : /market/seller
+
+       상품 컨트롤러 처리주소 : 
+        - 등록 : /market/product/regist
+        - 목록 : /market/product/list
+        - 수정 : /market/product/update
+        - 삭제 : /market/product/delete
+
+      판매자 컨트롤러 처리주소 : 
+       - 등록 : /market/seller/regist
+       - 목록 : /market/seller/list
+       - 수정 : /market/seller/update
+       - 삭제 : /market/seller/delete
+------------------------------------------------------------------------
+
+2. 요구사항에 맞게 서비스(Service), 리파지토리(Repository) 구현
+   ==>
+       상품 서비스 인터페이스 이름 : ProductService
+       상품 서비스 구현체 이름 : ProductServiceImpl
+       판매자 서비스 인터페이스 이름 : SellerService
+       판매자 서비스 구현체 이름 : SellerServiceImpl
+
+       상품 리파지토리 인터페이스 이름 : ProductRepository
+       상품 리파지토리 구현체 이름 : ProductRepositoryImpl
+       판매자 리파지토리 인터페이스 이름 : SellerRepository
+       판매자 리파지토리 구현체 이름 : SellerRepositoryImpl
+------------------------------------------------------------------------ 
+
+3. 제시된 개체에 맞게 상품 VO, 판매자 VO 클래스 코드 작성
+   ==> 
+       @Data
+       public class ProductDto{
+            private int productNumber;
+            private String productName;
+            private int productPrice;
+            private String productRegistDate;
+            private int totalSellCount;
+       }
+
+      @Data
+      public class SellerDto{
+           private int sellerId;
+           private String sellerName;
+           private String sellerHompageUrl;
+      }
+------------------------------------------------------------------------
+
+4. 상품 개체, 판매자 개체에 맞는 데이블 생성 구문 작성
+   ==>
+     create table product(
+         product_number number primary key,
+         product_name varchar2(60) not null,
+         product_price number not null,
+         product_regist_date date not null,
+         total_sell_count number not null
+     );
+ 
+    create table seller(
+        seller_id number primary key,
+        seller_name varchar2(21) not null,
+        seller_homepage_url varchar2(60) not null
+    );
