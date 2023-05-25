@@ -1,0 +1,120 @@
+능력단위 : 공공데이터 아키텍처 설계(재평가)
+
+평가방법 : 문제해결 시나리오
+
+
+
+1. Controller class인 APIController.java의 String url의 기능을 구현하는 내용을 [원인](20점)에, 
+   전체 소스코드를 [조치내용](20점)에 작성하세요. (총 40점)
+
+    [원인] 
+      - OpenAPI 서비스 인증키인 serviceKey parameter 정보를 url에 추가한다.
+      - OpenAPI parameter인 strSrch에 3로 설정하여 url에 추가한다.
+      - OpenAPI parameter인 resultType에 json로 설정하여 url에 추가한다.
+
+    [조치내용]
+     @Controller
+     public class APIController {
+         private static final String serviceKey = 
+             "JHGf3ucgXiGwhU2zVB5H6CVs3a34PmQ1YFrnuQrm%2F%2F1Mzh16zr0%2F1Mzh16zr0%2F%2FsjvRom60egE8R2FS70VlXqOj6EpGEf1h7A%3D%3D";
+
+     @ReqponseBody
+     @RequestMapping(value="busroute.do", produces = "application/json; charset=utf-8")
+     public String tsunaminShelter() throws IOException {
+	
+          String url = "http://ws.bus.go.kr/api/rest/busRouteInfo/getBusRouteList";
+
+          // url에 parameter 정보들을 추가하시오.
+          url += "?serviceKey=" + serviceKey;
+          url += "&strSrch=3";
+          url += "&resultType=json";
+
+          URL requestUrl = new URL(url);
+          HttpURLConnection urlConnection = (HttpURLConnection)requestUrl.openConnection();
+          urlConnection.setRequestMethod("GET");
+
+          BufferedReader br = nre BufferedReader(new InputStreamReader(urlConnection.getInputStream)));
+    
+          String responseText = "";
+          String line;
+          while(line = br.readLine()) !=null) {
+	   responseText += line;
+          }
+          
+          br.close();
+          urlConnection.disconnect();
+          return responseText;  
+       }  
+     }
+
+==========================================================================
+
+2. 공공데이터포털에서 제공하는 한국환경공단 에어코리아 대기오염정보 중 시도별 실시간 측정정보 조회 결과를 json으로 
+   받아 index.jsp 파일을 생성하여 index.jsp 파일의 빈칸 부분(for문 본문 내용 코딩)을 완성하여 출력결과가 화면에 
+   보여지도록 구현하시오.
+
+   [원인]
+    - json 문서객체의 복수개의 row태그를 처리할 수 없다. 반복문을 통해 여러 row태그에 접근하고, 
+      그 자식태그의 값을 가져와야 한다.
+    - 이를 테이블태그의 자식 tr태그로 구성해 추가했어야 함.
+
+   [조치내용]
+      <%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+      <!DOCTYPE html>
+      <html>
+      <head>
+      <meta charset="UTF-8">
+      <title>Insert title here</title>
+      <script src ="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+      </head>
+      <body>
+	<h2>서울시 노선 목록 조회</h2>
+	
+	<button id = "btn1">노선 조회</button>
+	<br><br>
+	<table id = "result1" border = "1">
+	     <thead>
+	          <tr>	
+	               <th>노선 ID</th>
+	               <th>노선명</th>
+	               <th>노선 길이(Km)</th>
+	               <th>노선 기점</th>
+	               <th>노선 종점</th>
+	               <th>운수사명</th>
+	          </tr>
+	      </thead>
+                    <tbody>
+	      </tbody>
+	</table>
+	<script>
+	     $(function(){
+	          $("#btn1").click(function(){
+	               $.ajax({
+                                  url:"busroute.do",
+	                    success:function(data){
+		           const itemArr = data.msgBody.itemList;
+		           let value = "";
+		           for(let i in itemArr){
+		                // console.log(itemArr[i]); 확인 후 주석
+			 let item = itemArr[i];
+						
+			 value += "<tr>"
+			         + "<td>" + item.busRouteId + "</td>"
+			         + "<td>" + item.busRouteNm + "</td>"
+			         + "<td>" + item.length + "</td>"
+			         + "<td>" + item.stStationNm + "</td>"
+			         + "<td>" + item.edStationNm + "</td>"
+			         + "<td>" + item.corpNm + "</td>"
+			         + "</tr>";
+		          }
+
+		          $("#result1 tbody").html(value);		
+			}
+		       })
+	               })
+	     })
+	</script>
+
+</body>
+</html>
