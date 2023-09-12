@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script>
+
+        // 전역 변수
+        let count = 0;
+        let img1 = null;
+
+        onload = () => {
+
+            init();   // 초기화 시켜 주는 함수 호출
+
+            start();  // 타이머 함수 호출
+        }
+
+        // 초기화 시켜 주는 함수
+        function init() {
+
+            img1 = document.querySelector("#img1");
+        }
+
+        // 타이머 함수
+        function start() {
+            // 1초에 한번씩 특정 함수를 호출할 예정.
+            setInterval(changeImage, 1000);
+        }
+
+        // 이미지를 변경하는 함수
+        function changeImage() {
+            count++;
+
+            // 현재 숫자값이 10이 넘어가면 다시 1로 설정해 주기
+            if(count >= 10) {
+                count = 1;
+            }
+
+            // 이미지를 변경하자
+            img1.src = "../images/img"+count+".jpg";
+        }
+    </script>
+    
+</head>
+<body>
+    
+    <div>
+        <h2>이미지를 순차적으로 변경하기</h2>
+
+        <div id="panel">
+            <img id="img1" src="../images/img1.jpg" alt="이미지">
+        </div>
+
+    </div>
+</body>
+</html>
