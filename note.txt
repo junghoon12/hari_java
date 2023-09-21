@@ -1,37 +1,44 @@
-# 세션(session)이란?
-  - 쿠키와 마찬가지로 서버와의 connection 관계를 유지하기
-    위해서 이용자의 정보를 저장하는 객체임.
+# 자바 빈(Java Bean)
+  - 정보의 덩어리. 즉, 데이터 저장소(데이터 객체).
+  - 데이터를 저장하기 위한 필드와 메서드를 컨트롤하는
+    setter / getter 메서드를 하나의 쌍으로 가지고 있는 
+        클래스.
+  - setter / getter 메서드는 자바 빈의 필드에 데이터를
+        저장하고 조회하는 작업을 함.
     
-# 세션의 특징
-  - 세션은 서버에서만 접근이 가능함.
-  - 세션은 서버의 메모리에 저장됨.
-  - 서버에 부하를 줄 수 있음.
-  - 쿠키의 기본 용량이 4KB, 300개로 제한적인 반면에 세션은 제한이 없음.
-  - 브라우저 당 한 개의 세션이 생성이 됨.
-  - 로그인 상태 유지 기능이나 쇼핑몰의 장바구니 담기 기능 등에
-    주로 사용이 됨.
     
+# 자바 빈(클래스) 만드는 방법
+  - 패키지 선언
+    khie.클래스이름(빈 클래스명)
+  - 필드 선언
+    * private 접근지정자를 이용하여 멤버 선언.
+    * setter / getter 메서드 만들기. - 프로퍼티 방식
+    * 프로퍼티 : private 필드를 외부에서 접근하기 위해서
+               공개형 접근지정자 public 으로 메서드를
+               정의해 놓고 이를 통해서 간접적으로 필드에
+               접근하는 방식.
+               
+          
+# 자바 빈과 관련된 액션 태그 - 3가지
+  - <jsp:useBean> ==> 자바 빈을 생성하는 태그.
+  - <jsp:setProperty> ==> 자바 빈에 정보를 저장하는 태그.
+  - <jsp:getProperty> ==> 자바 빈에서 정보를 얻어오는 태그.
 
-# 세션 관련 메서드
-  - setAttribute() 
-    ==> 세션의 속성을 설정하는 메서드.
-        형식) session.setAttribute("id", "hong");
-  - getAttribute()
-    ==> 세션에서 데이터를 얻어올 때(세션의 속성을 사용할 때)
-        이용하는 메서드.
-        형식) String id = 
-              (String)session.getAttribute("id");
-  - getAttributeNames()
-    ==> 세션에 저장되어 있는 모든 데이터의 이름을 얻어올 때
-        사용하는 메서드.
-  - removeAttribute()
-    ==> 세션의 특정 데이터를 제거하는 메서드
-        형식) session.removeAttribute()
-  - invalidate()
-    ==> 세션의 모든 데이터를 삭제하는 메서드.
-  - getId()
-    ==> 자동 생성된 세션의 아이디를 얻어올 때 사용하는 메서드.
-  - isNew()
-    ==> 세션이 최초 생성되었는지 여부를 알고 싶은 경우 사용되는 메서드.
-  - getMaxInactiveInterval()
-    ==> 세션의 유효 시간을 얻어올 때 사용하는 메서드.
+
+  형식)
+  - <jsp:useBean> 기본 형식
+    <jsp:useBean class="클래스 풀네임" 
+                      id="빈 이름" [scope="범위"] />
+                      
+  - <jsp:setProperty> 기본 형식
+    <jsp:setProperty name="빈 이름" 
+             property="프로퍼티 이름" value="값" />
+  
+  - <jsp:getProperty> 기본 형식
+    <jsp:getProperty name="빈 이름" 
+             property="프로퍼티 이름" />    
+             
+    ==> 회원의 이름을 얻기 위해서 getName() 메서드를
+                호출하는 것과 같음.
+        id의 빈 이름과 name의 빈 이름은 반드시 같아야 함.
+        
