@@ -1,0 +1,53 @@
+-- 분석함수
+-- 1) row_number() 함수
+--    정렬이 되어 있는 결과에 대하여 번호를 할당하는 함수.
+--    형식) row_number() over(order by 정렬시킬 컬럼명)
+select * from
+(select row_number() over(order by sal desc) as "연봉순위", e.* from emp e)
+-- where "연봉순위" >= 1 and "연봉순위" <= 5;
+-- where "연봉순위" between 1 and 5;
+where "연봉순위" <= 5;
+
+select * from emp order by sal desc;
+
+-- 2) rank() 함수
+--    rank() 함수 사용 후 결과가 나왔을 때 같은 값이 나오면
+--    1등, 2등, 2등, 4등 으로 표시하는 함수.
+select rank() over(order by sal desc) as rank, e.* from emp e;
+
+-- 3) dense_rank() 함수
+--    dense_rank() 함수 사용 후 결과가 나왔을 때 같은 값이 나오면
+--    1등, 2등, 2등, 3등 으로 표시하는 함수.
+select dense_rank() over(order by sal desc) as rank, e.* from emp e;
+
+
+-- [문제1] products 테이블에서 제품 출고가격이 가장 높은 
+--        상위 5개의 제품 목록을 화면에 보여주세요.
+select * from
+(select row_number() over(order by output_price desc) 
+    as rnum, p.* from products p)
+where rnum >= 1 and rnum <= 5;
+
+-- [문제2] member10 테이블에서 회원의 마일리지가 가장 높은
+--        상위 3명의 회원의 모든 정보를 화면에 보여주세요.
+select * from
+(select row_number() over(order by mileage desc) 
+                as rnum, m.* from member10 m)
+where rnum between 1 and 3;
+
+-- [문제3] emp 테이블에서 급여를 많이 받는 순서대로 화면에 보여주세요.
+--        단, 랭킹은 rank() over 함수를 이용하세요.
+select rank() over(order by sal desc) as rank, e.* from emp e;
+
+-- [문제4] products 테이블에서 출고가가 높은 순서대로 화면에 보여주세요.
+--        단, 랭킹은 rank() over 함수를 이용.
+select rank() over(order by output_price desc) 
+                    as rank, p.* from products p;
+
+-- [문제5] member10 테이블에서 회원의 마일리지가 큰 순서대로 화면에 보여주세요.
+--        단, 랭킹은 dense_rank() over 함수를 이용.
+select dense_rank() over(order by mileage desc) as rank, m.* from member10 m;
+
+-- [문제6] member10 테이블에서 회원의 나이가 큰 순서대로 화면에 보여주세요.
+--        단, 랭킹은 dense_rank() over 함수를 이용.
+select dense_rank() over(order by age desc) as rank, m.* from member10 m;
