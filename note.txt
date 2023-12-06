@@ -43,6 +43,15 @@
 # DataSource?
   - DataSource 는 JDBC 명세서의 일부분이면서 일반적으로 DB 연결 공장.
     즉, DB와 관련된 Connection(DBCP 방식) 정보를 담고 있음.
+
+  - JDBCTemplate 클래스가 JDBC API를 이용해서 DB 연동을 처리하려면 
+    반드시 데이터베이스로부터 커넥션을 얻어야함
+
+  - JDBCTemplate 객체가 사용할 DataSource를 <bean> 등록하여 
+    스프링 컨테이너가 생성되도록 해야함
+
+  - DataSource 설정은 이후 트랜잭션 처리나 Mybatis 연동, 
+    JPA 연동에서도 DataSource가 사용되므로 매우 중요한 설정임
     
     * DB 종류(oracle.jdbc.driver.OracleDriver)
     * url 정보(jdbc:oracle:thin:@localhost:1521:XE)
