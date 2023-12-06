@@ -15,7 +15,13 @@
     
 # Spring JDBCTempate?
   - JDBCTemplate 은 Spring JDBC 접근 방법 중 하나임.
-  
+
+  - JDBCTemplate : 디자인 패턴 중 템플릿 메소드 패턴이 적용된 클래스.
+
+  - 템플릿 메소드 패턴 : 복잡하고 반복되는 알고리즘을 캡슐화하여 재사용하는 패턴.
+
+  - JDBC처럼 코딩 순서가 정형화된 기술에서 유용하게 사용할 수 있음.
+
   - 내부적으로 JDBC API를 사용하지만, 위의 내용과 같은 문제점을
     제거한 형태로 Spring에서 제공하는 클래스임.
     
@@ -29,6 +35,9 @@
       
   - Spring JDBC에서 개발자가 할 일은 핵심적으로 해야 할 작업만
     해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
+    즉, 반복되는 DB 연동 로직은 JdbcTemplate 클래스의 템플릿 
+    메소드가 제공하고, 개발자는 달라지는 SQL 구문과 설정값만 
+    신경 쓰면 됨.
     
 
 # DataSource?
