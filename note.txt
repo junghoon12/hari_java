@@ -3,7 +3,7 @@
   - JDBC는 DB에 접근할 수 있도록 Java에서 제공하는 API임.
   
   - JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트 하는 방법을
-       제공함.
+    제공함.
     
   - JDBC API의 문제점.
     1. 쿼리를 실행하기 전과 후에 많은 양의 코드를 작성해야 함.
@@ -17,7 +17,7 @@
   - JDBCTemplate 은 Spring JDBC 접근 방법 중 하나임.
   
   - 내부적으로 JDBC API를 사용하지만, 위의 내용과 같은 문제점을
-        제거한 형태로 Spring에서 제공하는 클래스임.
+    제거한 형태로 Spring에서 제공하는 클래스임.
     
     ※ Spring JDBC가 하는 일.
       - Connection 열기와 닫기.
@@ -28,12 +28,12 @@
       - Transaction 처리
       
   - Spring JDBC에서 개발자가 할 일은 핵심적으로 해야 할 작업만
-        해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
+    해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
     
 
 # DataSource?
   - DataSource 는 JDBC 명세서의 일부분이면서 일반적으로 DB 연결 공장.
-        즉, DB와 관련된 Connection(DBCP 방식) 정보를 담고 있음.
+    즉, DB와 관련된 Connection(DBCP 방식) 정보를 담고 있음.
     
     * DB 종류(oracle.jdbc.driver.OracleDriver)
     * url 정보(jdbc:oracle:thin:@localhost:1521:XE)
@@ -42,6 +42,6 @@
     
 
 # Spring JDBCTemplate 클래스를 사용하기 위해서는 pom.xml 파일에
-    아래와 같은 라이브러리를 추가해 주어야 함.
+  아래와 같은 라이브러리를 추가해 주어야 함.
   
   * spring-jdbc 라이브러리
