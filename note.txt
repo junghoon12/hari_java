@@ -3,7 +3,7 @@
   - JDBC는 DB에 접근할 수 있도록 Java에서 제공하는 API임.
   
   - JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트 하는 방법을
-    제공함.
+       제공함.
     
   - JDBC API의 문제점.
     1. 쿼리를 실행하기 전과 후에 많은 양의 코드를 작성해야 함.
@@ -23,7 +23,7 @@
   - JDBC처럼 코딩 순서가 정형화된 기술에서 유용하게 사용할 수 있음.
 
   - 내부적으로 JDBC API를 사용하지만, 위의 내용과 같은 문제점을
-    제거한 형태로 Spring에서 제공하는 클래스임.
+       제거한 형태로 Spring에서 제공하는 클래스임.
     
     ※ Spring JDBC가 하는 일.
       - Connection 열기와 닫기.
@@ -34,24 +34,24 @@
       - Transaction 처리
       
   - Spring JDBC에서 개발자가 할 일은 핵심적으로 해야 할 작업만
-    해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
-    즉, 반복되는 DB 연동 로직은 JdbcTemplate 클래스의 템플릿 
-    메소드가 제공하고, 개발자는 달라지는 SQL 구문과 설정값만 
-    신경 쓰면 됨.
+       해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
+       즉, 반복되는 DB 연동 로직은 JdbcTemplate 클래스의 템플릿 
+       메소드가 제공하고, 개발자는 달라지는 SQL 구문과 설정값만 
+       신경 쓰면 됨.
     
 
 # DataSource?
   - DataSource 는 JDBC 명세서의 일부분이면서 일반적으로 DB 연결 공장.
-    즉, DB와 관련된 Connection(DBCP 방식) 정보를 담고 있음.
+       즉, DB와 관련된 Connection(DBCP 방식) 정보를 담고 있음.
 
   - JDBCTemplate 클래스가 JDBC API를 이용해서 DB 연동을 처리하려면 
-    반드시 데이터베이스로부터 커넥션을 얻어야함
+       반드시 데이터베이스로부터 커넥션을 얻어야 함.
 
   - JDBCTemplate 객체가 사용할 DataSource를 <bean> 등록하여 
-    스프링 컨테이너가 생성되도록 해야함
+       스프링 컨테이너가 생성되도록 해야함.
 
   - DataSource 설정은 이후 트랜잭션 처리나 Mybatis 연동, 
-    JPA 연동에서도 DataSource가 사용되므로 매우 중요한 설정임
+    JPA 연동에서도 DataSource가 사용되므로 매우 중요한 설정임.
     
     * DB 종류(oracle.jdbc.driver.OracleDriver)
     * url 정보(jdbc:oracle:thin:@localhost:1521:XE)
@@ -60,6 +60,7 @@
     
 
 # Spring JDBCTemplate 클래스를 사용하기 위해서는 pom.xml 파일에
-  아래와 같은 라이브러리를 추가해 주어야 함.
+   아래와 같은 라이브러리를 추가해 주어야 함.
   
   * spring-jdbc 라이브러리
+
