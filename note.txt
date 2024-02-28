@@ -1,36 +1,36 @@
--- 상품 정보 테이블을 만들어 보자.
-create table products(
-    pnum number(11) primary key,                   -- 제품 번호
-    category_fk varchar2(8) not null,              -- 카테고리 코드
-    products_name varchar2(50) not null,           -- 제품명
-    ep_code_fk varchar2(5) not null,               -- 제품 코드
-    input_price number(10) default 0 not null,     -- 제품 입고 가격
-    output_price number(10) default 0 not null,    -- 제품 출고 가격
-    trans_cost number(5) default 0 not null,       -- 제품 배송비
-    mileage number(6) default 0 not null,          -- 제품 마일리지
-    company varchar2(30),                          -- 제품 제조사
-    constraint category_ref foreign key(category_fk) 
-        references category(category_code)
-);
+-- [문제1] emp 테이블에서 결과가 아래와 같이 나오도록
+-- 화면에 보여주세요.
+-- 결과) 'SCOTT의 담당업무는 ANALYST 입니다.'
+-- 단, concat() 함수를 이용하세요.
 
--- 제품 데이터를 저장해 보자.
-insert into products
-   values(1, '00010001', 'S 벽걸이 TV', '00001', 5000000, 8000000, 0, 100000, '삼성');
-insert into products
-   values(2, '00010001', 'L TV', '00002', 1000000, 1500000, 0, 50000, 'LG');
-insert into products
-   values(3, '00010004', 'S 에어컨', '00001', 1000000, 1100000, 5000, 100000, '삼성');
-insert into products
-   values(4, '00010000', 'C 밥솥', '00003', 200000, 220000, 5500, 0, '쿠쿠');
-insert into products
-   values(5, '00010004', 'L 에어컨', '00003', 1200000, 1300000, 0, 0, 'LG');
-insert into products
-   values(6, '00020001', '남성난방', '00002', 100000, 150000, 2500, 0, '');
-insert into products
-   values(7, '00020001', '여성난방', '00002', 120000, 200000, 0, 0, '');
-insert into products
-   values(8, '00020002', '사각팬티', '00002', 10000, 20000, 0, 0, '보디가드');
-insert into products
-   values(9, '00020003', '멜빵바지', '00002', 15000, 18000, 0, 0, '');
-insert into products
-   values(10, '00030001', '무따기 시리즈', '00001', 25000, 30000, 2000, 0, '길벗');
+
+-- [문제2] emp 테이블에서 결과가 아래와 같이 나오도록
+-- 화면에 보여주세요.
+-- 결과) 'SCOTT의 연봉은 36000입니다.'
+-- 단, concat() 함수를 이용하세요.
+
+-- [문제3] member10 테이블에서 결과가 아래와 같이 나오도록
+-- 화면에 보여주세요.
+-- 결과) '홍길동 회원의 직업은 학생입니다.'
+-- 단, concat() 함수를 이용하세요.
+
+
+-- [문제4] emp 테이블에서 사번, 이름, 담당업무를 화면에
+-- 보여주세요. 단, 담당업무는 소문자로 변경하여 보여주세요.
+
+
+-- [문제5] 여러분의 주민등록 번호 중에서 생년월일을 추출하여
+-- 화면에 보여주세요.
+
+
+-- [문제6] emp 테이블에서 담당업무에 'A' 라는 글자를
+-- '$'로 바꾸어 화면에 보여주세요.
+
+
+-- [문제7] member10 테이블에서 직업이 '학생' 인 정보를
+-- '대학생'으로 바꾸어 화면에 보여주세요.
+
+
+--[문제8] member10 테이블에서 주소에 '서울시' 로 된 정보를
+-- '서울특별시'로 바꾸어 화면에 보여주세요.
+
