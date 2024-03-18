@@ -1,38 +1,184 @@
-# 세션(session)이란?
-  - 쿠키와 마찬가지로 서버와의 connection 관계를 유지하기
-    위해서 이용자의 정보를 저장하는 객체임.
-    
-# 세션의 특징
-  - 세션은 서버에서만 접근이 가능함.
-  - 세션은 서버의 메모리에 저장됨.
-  - 서버에 부하를 줄 수 있음.
-  - 쿠키의 기본 용량이 4KB, 300개로 제한적인 반면에, 세션은 제한이 없음.
-  - 브라우저 당 한 개의 세션이 생성이 됨.
-  - 로그인 상태 유지 기능이나 쇼핑몰의 장바구니 담기 기능 등에
-    주로 사용이 됨.
-    
+<%@page import="com.emp.model.DeptDTO"%>
+<%@page import="com.emp.model.EmpDTO"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
-# 세션 관련 메서드
-  - setAttribute() 
-    ==> 세션의 속성을 설정하는 메서드.
-        형식) session.setAttribute("id", "hong");
-  - getAttribute()
-    ==> 세션에서 데이터를 얻어올 때(세션의 속성을 사용할 때)
-        이용하는 메서드.
-        형식) String id = 
-              (String)session.getAttribute("id");
-  - getAttributeNames()
-    ==> 세션에 저장되어 있는 모든 데이터의 이름을 얻어올 때
-        사용하는 메서드.
-  - removeAttribute()
-    ==> 세션의 특정 데이터를 제거하는 메서드
-        형식) session.removeAttribute()
-  - invalidate()
-    ==> 세션의 모든 데이터를 삭제하는 메서드.
-  - getId()
-    ==> 자동 생성된 세션의 아이디를 얻어올 때 사용하는 메서드.
-  - isNew()
-    ==> 세션이 최초 생성되었는지 여부를 알고 싶은 경우 사용되는 메서드.
-  - getMaxInactiveInterval()
-    ==> 세션의 유효 시간을 얻어올 때 사용하는 메서드.
+<%
+	List<String> jList = (List<String>)request.getAttribute("jList");
+
+	List<EmpDTO> mList = (List<EmpDTO>)request.getAttribute("mList");
+	
+	List<DeptDTO> dList = (List<DeptDTO>)request.getAttribute("dList");
+	
+	EmpDTO content = (EmpDTO)request.getAttribute("Modify");
+
+%>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<div align="center">
+	   <hr width="30%" color="gray">
+	      <h3>EMP 테이블 사원 정보 수정 폼 페이지</h3>
+	   <hr width="30%" color="gray">
+	   <br> <br>
+	   
+	   <form method="post"
+	      action="<%=request.getContextPath() %>/update_ok">
+	   
+	      <table border="1" width="350">
+	         <%
+	           if(content != null) {
+	         %>
+	         	  <tr>
+	         	     <th>사원 No.</th>
+	         	     <td>
+	         	        <input type="text" name="num" readonly
+	         	        	value="<%=content.getEmpno() %>">
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <th>사원 이름</th>
+	         	     <td>
+	         	        <input type="text" name="name" readonly
+	         	        	value="<%=content.getEname() %>">
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <th>담당 업무</th>
+	         	     <td>
+	         	        <select name="job">
+	         	           <%
+	         	              if(jList.size() == 0) {
+	         	           %>
+	         	           	  <option value="">:::담당업무 없음:::</option>
+	         	            	  
+	         	           <% }else {  // 담당업무 전체 리스트가 있는 경우
+	         	        	   
+	         	        	   for(int i=0; i<jList.size(); i++) {
+	         	        			String strJob = jList.get(i);
+	         	        			
+	         	        			if(strJob.equals(content.getJob())) {
+	         	           %>
+		         	           			<option value="<%=strJob %>" selected>
+		         	           				<%=strJob %> </option>
+	         	           <%		}else {  %>
+	         	        	   			<option value="<%=strJob %>">
+		         	           				<%=strJob %> </option>
+	         	          <% }
+	         	        	   }
+	         	           }
+	         	           
+	         	           %>
+	         	        </select>
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <th>관리자 No.</th>
+	         	     <td>
+	         	        <select name="mgrNo">
+	         	           <%
+	         	             if(mList.size() == 0) {
+	         	           %> 
+	         	                <option value="">:::담당 관리자 없음:::</option>	
+	         	           <%}else {  // 담당 관리자 리스트가 있는 경우
+	         	        	   
+	         	        	   for(int i=0; i<mList.size(); i++) {
+	         	        		   
+				         	       EmpDTO mgrCont = mList.get(i);
+				         	       
+				         	       if(mgrCont.getEmpno() == content.getMgr()) {
+				           %>
+				           			<option value="<%=mgrCont.getEmpno() %>" selected>
+				           				<%=mgrCont.getEmpno() %>&nbsp; [<%=mgrCont.getEname() %>] </option> 	   
+				           <%      }else {  %>
+				        	        <option value="<%=mgrCont.getEmpno() %>">
+				           				<%=mgrCont.getEmpno() %>&nbsp; [<%=mgrCont.getEname() %>] </option> 	   
+				           <%}
+	         	        	   }
+	         	           } %>
+	         
+	         	        </select>
+	         	  
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <th>사원 급여</th>
+	         	     <td>
+	         	        <input type="text" name="sal"
+	         	        	value="<%=content.getSal() %>">
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <th>사원 보너스</th>
+	         	     <td>
+	         	        <input type="text" name="comm"
+	         	        	value="<%=content.getComm() %>">
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <th>부서 No.</th>
+	         	     <td>
+	         	        <select name="deptNo">
+	         	           <%
+	         	              if(dList.size() == 0) {
+	         	           %>
+	         	           		<option value="">:::부서번호 없음:::</option>
+	         	           
+	         	           <% }else {
+	         	        	   
+	         	        	    for(int i=0; i<dList.size(); i++) {
+	         	        	    	
+	         	        	    	DeptDTO dCont =	dList.get(i);
+	         	        	    	
+	         	        	    	if(dCont.getDeptno() == content.getDeptno()) {
+	         	           %>
+	         	           				<option value="<%=dCont.getDeptno() %>" selected>
+	         	           					<%=dCont.getDeptno() %>&nbsp;[<%=dCont.getDname() %>]</option>
+	         	           <%	   	}else {  %>
+	         	        	   			<option value="<%=dCont.getDeptno() %>">
+	         	           					<%=dCont.getDeptno() %>&nbsp;[<%=dCont.getDname() %>]</option>
+	         	           <%}
+	         	           
+	         	        	    }
+	         	           }
+	         	           %>
+	         	        </select>
+	
+	         	     </td>
+	         	  </tr>
+	         	  
+	         	  <tr>
+	         	     <td colspan="2" align="center">
+	         	        <input type="submit" value="사원수정">&nbsp;&nbsp;&nbsp;
+	         	        <input type="reset" value="다시작성">
+	         	     </td>
+	         	  </tr>
+	         <%  }
+	         %>
+	          
+	      </table>
+	   
+	   </form>
+	   
+	</div>
+
+</body>
+</html>
+
+
+
+
 
