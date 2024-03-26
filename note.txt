@@ -1,24 +1,53 @@
-/*
-				 * 동적 객체 생성 : newInstance()
-				 * - Class 객체를 이용하면 new 연산자의 사용 없이 동적으로
-				 *   객체 생성이 가능함.
-				 * - 코드 작성 시에 클래스의 이름을 결정할 수 없고, 런타임(실행)
-				 *   시에 클래스의 이름이 결정되는 경우에 유용하게 사용이 됨.
-				 * 
-				 * - newInstance() 메서드는 기본생성자를 통하여 객체를 생성하기
-				 *   때문에 반드시 클래스에 기본생성자가 존재하여야 함.
-				 *   예외가 발생할 수 있는데 해당 클래스가 추상클래스이거나 인터페이스일
-				 *   경우 발생하고, 또 하나의 예외는 클래스의 생성자가 접근제한자로 인해
-				 *   접근할 수 없는 경우에 발생을 함. 따라서 예외 처리를 해 주어야 함.
-				 *   
-				 * - 반환 타입은 Object 타입이므로 맞게 형변환을 해 주면 되지만, 
-				 *   클래스의 타입을 모르는 상태이므로 형변환을 해 줄 수가 없음.
-				 *   이러한 문제를 해결하기 위해서 인터페이스를 사용하는 것임.
-				 *   
-				 * - Class.forName(class 이름)은 파라미터로 받은 class 이름에
-				 *   해당하는 클래스를 로딩한 후에 그 클래스에 해당하는 인스턴스를
-				 *   리턴을 해 줌.
-				 *   newInstance() 메서드는 로딩한 클래스의 객체를 생성하는
-				 *   메서드이고, 이렇게 생성된 객체를 동적 객체 생성이라고 함.
-				 */
+-- 분석함수
+-- 1) row_number() 함수
+--    정렬이 되어 있는 결과에 대하여 번호를 할당하는 함수.
+--    형식) row_number() over(order by 정렬시킬 컬럼명)
+select * from
+(select row_number() over(order by sal desc) as "연봉순위", e.* from emp e)
+-- where "연봉순위" >= 1 and "연봉순위" <= 5;
+-- where "연봉순위" between 1 and 5;
+where "연봉순위" <= 5;
 
+select * from emp order by sal desc;
+
+-- 2) rank() 함수
+--    rank() 함수 사용 후 결과가 나왔을 때 같은 값이 나오면
+--    1등, 2등, 2등, 4등 으로 표시하는 함수.
+select rank() over(order by sal desc) as rank, e.* from emp e;
+
+-- 3) dense_rank() 함수
+--    dense_rank() 함수 사용 후 결과가 나왔을 때 같은 값이 나오면
+--    1등, 2등, 2등, 3등 으로 표시하는 함수.
+select dense_rank() over(order by sal desc) as rank, e.* from emp e;
+
+
+-- [문제1] products 테이블에서 제품 출고가격이 가장 높은 
+--        상위 5개의 제품 목록을 화면에 보여주세요.
+select * from
+(select row_number() over(order by output_price desc) 
+    as rnum, p.* from products p)
+where rnum >= 1 and rnum <= 5;
+
+-- [문제2] member10 테이블에서 회원의 마일리지가 가장 높은
+--        상위 3명의 회원의 모든 정보를 화면에 보여주세요.
+select * from
+(select row_number() over(order by mileage desc) 
+                as rnum, m.* from member10 m)
+where rnum between 1 and 3;
+
+-- [문제3] emp 테이블에서 급여를 많이 받는 순서대로 화면에 보여주세요.
+--        단, 랭킹은 rank() over 함수를 이용하세요.
+select rank() over(order by sal desc) as rank, e.* from emp e;
+
+-- [문제4] products 테이블에서 출고가가 높은 순서대로 화면에 보여주세요.
+--        단, 랭킹은 rank() over 함수를 이용.
+select rank() over(order by output_price desc) 
+                    as rank, p.* from products p;
+
+-- [문제5] member10 테이블에서 회원의 마일리지가 큰 순서대로 화면에 보여주세요.
+--        단, 랭킹은 dense_rank() over 함수를 이용.
+select dense_rank() over(order by mileage desc) as rank, m.* from member10 m;
+
+-- [문제6] member10 테이블에서 회원의 나이가 큰 순서대로 화면에 보여주세요.
+--        단, 랭킹은 dense_rank() over 함수를 이용.
+select dense_rank() over(order by age desc) as rank, m.* from member10 m;
