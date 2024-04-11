@@ -1,0 +1,28 @@
+DispatcherServlet 개념
+- 프론트 컨트롤러(Front Controller)라고도 불리는 DispatcherServlet은 
+  HTTP 프로토콜로 들어오는 모든 요청을 먼저 받아서 적합한 컨트롤러에 
+  위임(Delegate request)는 역할을 합니다.
+  1. DispatcherServlet이 클라이언트의 모든 요청을 받습니다.
+  2. 요청 정보에 대해 HandlerMappinng에 위임하여 처리할 
+      Handler(Controller)을 찾습니다.
+  3. 2번에서 찾은 Handler을 수행할 수 있는 HandlerAdapter를 찾습니다.
+  4. HandlerAdapter는 Controller에 비즈니스 로직 처리를 호출합니다.
+  5. Controller는 비즈니스 로직을 수행하고, 처리 결과를 Model에 설정하며
+     HandlerAdapter에 view name을 반환합니다.
+     ==> 모델을 반환하면 View가 렌더링이 되고, 그렇지 않은 경우
+            (ex. @RestController 등) View가 렌더링이 되지 않습니다. 
+  6. 5번에서 반환받은 view name을 ViewResolver에게 전달하고, 
+     ViewResolver은 해당하는 View 객체를 반환합니다.
+  7. DispatcherServlet은 View에게 Model을 전달하고 화면 표시를 
+     요청합니다.
+  8. 최종적으로 서버의 응답을 클라이언트에게 반환합니다.
+
+< annotation-driven / >
+- 스프링 MVC에서 어노테이션(@) 사용을 가능하게 한다(기본값) 
+- 스캔한 패키지 내부의 클래스 중 Controller 어노테이션을 가진 
+  클래스들을 Controller로 로딩하도록 한다.
+   ※ 여기서 스캔한 패키지란 하위에 있는
+      <context:component-scan base-package="com.spring.di01" />
+      를 의미한다.
+
+
