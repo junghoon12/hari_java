@@ -37,8 +37,8 @@
     
     * DB 종류(oracle.jdbc.driver.OracleDriver)
     * url 정보(jdbc:oracle:thin:@localhost:1521:XE)
-    * 계정 정보(web)
-    * 계정 비밀번호 정보(1234)
+    * 계정 정보(goott)
+    * 계정 비밀번호 정보(99229922)
     
 
 # Spring JDBCTemplate 클래스를 사용하기 위해서는 pom.xml 파일에
