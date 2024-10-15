@@ -1,7 +1,50 @@
-<h2>--------------------------     <br>
-        웹 분야 1위! 그만한 이유가 있다!  <br>    
-        꼭 알아야 하는 내용만 누구나      <br>
-        이해하기 쉽게 담았다!             <br>
-      -------------------------- </h2>
-      <p>이 책의 집필 목표는 ‘누구나 쉽게 이해할 수 있는 HTML5 책’이었다. 2013년 9월에 첫 출간된    
-         이후, 2014년에 국립중앙도서관의 컴퓨터 분야 대출 1위 도서로 선정되는 등 오랫동안 웹 분야에서 1위를 놓치지 않았다. 하루가 빠르게 변하는 웹 분야이지만 이 자리를 꾸준히 지킬 수 있었던 이유는 HTML과 CSS를 가장 기본답게 다루기 때문이다. 웹을 공부한다면 꼭 알아야 하는 내용만 모아 누구라도 이 책을 읽고 실습만 따라하면 이해할 수 있게 상세하게 풀어쓴 본문과 실무에서도 쓰임새 있는 예제들이 뒷받침해준다. </p>
+ <style>
+    #container {
+      width:600px;
+      margin:0 auto;
+    }
+    h1 {
+      font-size:1.5rem;
+    }
+    h2 {
+      font-size:1rem;
+      line-height:1.8;
+    }
+    p {
+      font-size:0.8rem;
+      line-height: 2;
+    }
+    #top {
+      display:flex;
+      flex-direction: row;
+      justify-content:left;
+      align-items: center;
+      gap : 15px;
+      padding:10px;
+      border:1px solid #ccc;
+      border-radius:15px;
+    }
+    #top ul {
+      list-style: none;
+    }
+    li {
+      font-size:1rem;
+      line-height: 2;
+    }
+    li > b {
+      width:70px;
+      float:left;
+    }
+    #view {
+      margin-top:20px;
+      padding:10px;
+      background-color:#fff;      
+      border:1px solid #ccc;
+      border-left:none;
+      border-right:none;
+      cursor:pointer;
+    }
+    .hidden {
+      display:none;
+    }
+  </style>
