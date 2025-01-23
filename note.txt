@@ -1,65 +1,52 @@
-# JDBC(Java DataBase Connectivity)
-
-  - JDBC는 DB에 접근할 수 있도록 Java에서 제공하는 API임.
+# MyBatis
+  - 객체지향 언어인 자바의 관계형 데이터베이스 프로그래밍을 좀 더
+        쉽게 구현할 수 있도록 도와 주는 개발 프레임워크임.
+       
+  - MyBatis는 Spring과 전혀 상관없는 독립적인 프레임워크.
+    MyBatis는 Java에 국한된 프레임워크가 아님. 
+    C#, Ruby 등의 언어에서도 사용이 가능함.
   
-  - JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트 하는 방법을
-        제공함.
+  - MyBatis란 DAO 객체와 SQL문을 Mapping 해 주는 
+    Persistence Framework임(SQL Mapper라고도 부름).
+        즉, Data Access Layer에 속하는 프레임워크임.
     
-  - JDBC API의 문제점.
-    1. 쿼리를 실행하기 전과 후에 많은 양의 코드를 작성해야 함.
-       예) 오라클 드라이버 로딩, DB와 연결 생성, 명령문(쿼리문),
-       ResultSet 객체 연결, 연결 객체 닫기 등등
-    2. 데이터베이스 로직에서 예외 처리 코드를 수행해야 함.
-    3. 1과 2의 코드를 메소드 호출 시 마다 반복적으로 작성해야 함.
+  - 자바는 JDBC API를 제공해 주지만, 이런 JDBC를 이용하면 한 개의
+        클래스에 반복된 코드가 존재, 한 파일에 Java 언어와 SQL 언어가
+        섞여 있어서 재사용성 등이 안 좋아지는 단점이 발생함.
     
+  - MyBatis는 이러한 JDBC의 단점들을 개선했으며, 개발자가 작성한
+    SQL 명령어와 자바 객체를 매핑해 주는 기능을 제공하며, 기존에
+        사용하던 SQL 명령어를 재사용이 가능하게 해 줌.
     
-# Spring JDBCTempate?
-  - JDBCTemplate 은 Spring JDBC 접근 방법 중 하나임.
-
-  - JDBCTemplate : 디자인 패턴 중 템플릿 메소드 패턴이 적용된 클래스.
-
-  - 템플릿 메소드 패턴 : 복잡하고 반복되는 알고리즘을 캡슐화하여 재사용하는 패턴.
-
-  - JDBC처럼 코딩 순서가 정형화된 기술에서 유용하게 사용할 수 있음.
-
-  - 내부적으로 JDBC API를 사용하지만, 위의 내용과 같은 문제점을
-        제거한 형태로 Spring에서 제공하는 클래스임.
+  - 자바 오브젝트와 SQL문 사이의 자동 Mapping 기능을 지원하는
+    ORM(Object Relational Mapping) 프레임워크임.
     
-    ※ Spring JDBC가 하는 일.
-      - Connection 열기와 닫기.
-      - PreparedStatement 준비와 닫기.
-      - PreparedStatement 실행.
-      - ResultSet Loop 처리.
-      - Exception(예외) 처리.
-      - Transaction 처리.
-      
-  - Spring JDBC에서 개발자가 할 일은 핵심적으로 해야 할 작업만
-        해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
-        즉, 반복되는 DB 연동 로직은 JdbcTemplate 클래스의 템플릿 
-        메소드가 제공하고, 개발자는 달라지는 SQL 구문과 설정값만 
-        신경 쓰면 됨.
+    ※ ORM이란 객체와 관계형 데이터베이스의 데이터를 자동으로
+       매핑(연결) 해 주는 것을 말함.
+       
+  - MyBatis는 SQL을 별도의 파일로 분리해서 관리하게 해 주며, 
+       객체와 SQL 사이의 파라미터 매핑 작업을 자동으로 해 주기 때문에
+       많은 인기를 얻고 있는 기술임.
     
-
-# DataSource?
-  - DataSource 는 JDBC 명세서의 일부분이면서 일반적으로 DB 연결 공장.
-        즉, DB와 관련된 Connection(DBCP 방식) 정보를 담고 있음.
-
-  - JDBCTemplate 클래스가 JDBC API를 이용해서 DB 연동을 처리하려면 
-        반드시 데이터베이스로부터 커넥션을 얻어야 함.
-
-  - JDBCTemplate 객체가 사용할 DataSource를 <bean> 등록하여 
-        스프링 컨테이너가 생성되도록 해야 함.
-
-  - DataSource 설정은 이후 트랜잭션 처리나 Mybatis 연동, 
-    JPA 연동에서도 DataSource가 사용되므로 매우 중요한 설정임.
-    
-    * DB 종류(oracle.jdbc.driver.OracleDriver)
-    * url 정보(jdbc:oracle:thin:@localhost:1521:XE)
-    * 계정 정보(web)
-    * 계정 비밀번호 정보(1234)
-    
-
-# Spring JDBCTemplate 클래스를 사용하기 위해서는 pom.xml 파일에
-    아래와 같은 라이브러리를 추가해 주어야 함.
+  - MyBatis의 특징
+    * 쉬운 접근성과 코드의 간결함.
+    * XML 형태로 서술된 JDBC 코드라고 생각해도 될 만큼 JDBC의
+            모든 기능을 MyBatis가 대부분 제공함.
+    * 복잡한 JDBC 코드를 걷어내며 깔끔한 소스 코드를 유지할 수 있음.
+    * 한 두 줄의 자바코드로 DB 연동을 처리를 해 줌.
+    * SQL 명령어를 자바 코드에서 분리하여 XML 파일로 따로 관리.
   
-  * spring-jdbc 라이브러리
+  - 따라서, 독립적인 MyBatis 프레임워크를 스프링과 연동하기 위해서는
+    MyBatis-Spring 모듈이 필요함.
+    MyBatis-Spring은 MyBatis를 Spring Framework에 녹여 
+        더 쉽게 사용할 수 있게 하기 위한 연동 모듈임. 
+    
+
+# MyBatis 설정 작업
+  - 스프링과 MyBatis를 연동하기 위한 라이브러리 설정 - pom.xml
+  
+    * MyBatis 프레임워크 라이브러리 추가.
+    * MyBatis-Spring 라이브러리 추가.
+    * Spring-JDBC 라이브러리 추가.
+    
+    * 데이터베이스와 연결을 담당하는 DataSource 객체 설정.
