@@ -1,42 +1,18 @@
 /*
- * 예외 처리
- * - 실행하는 단계에서 발생한 오류(예외)를
- *   프로그램적으로 처리한다는 의미.
- * - 개발자가 작성한 프로그램의 실행 중에 예외가
- *   발생하면 이에 대응하는 것을 말함.
- *   
- * - 관련 키워드
- *   1. try ~ catch ~ finally 블럭
- *   2. throws 키워드
- *   
- * - 자바의 예외 클래스
- *   * ArithmeticException : 정수를 0으로 나눌 때 발생.
- *   * NullPointerException : null 레퍼런스를 참조할 때 발생.
- *   * ClassCastException : 변환할 수 없는 타입으로 객체를 
- *                          변환할 때 발생.
- *   * OutOfMemoryError : 메모리가 부족한 경우 발생.
- *   * ArrayIndexOutOfBoundsException : 배열의 범위를 벗어난
- *                                      접근 시 발생.
- *   * IllegalArgumentException : 잘못된 인자 전달 시 발생.
- *   * IOException : 입출력 동작 실패 또는 인터럽트 시 발생.
- *   * NumberFormatException : 문자열이 나타내는 숫자와 일치하지
- *                             않는 타입의 숫자로 변환 시 발생.
- *   * InputMismatchException : Scanner 클래스의 nextInt()를
- *                              호출하여 정수로 입력받고자 하였지만,
- *                              사용자가 문자를 입력한 경우
- */
-
-/*
- * 1. try ~ catch ~ finally  블럭
- * 
- *    형식)
- *    		try {
- *    			예외가 발생할 가능성이 있는 코드;
- *    		}catch(예외클래스 참조변수) {
- *    			예외가 발생한 경우 실행되는 코드;
- *    			참조변수 : 예외와 관련된 정보를 넘겨받는 변수.
- *    		}finally {
- *    			// 생략이 가능함.
- *    			예외와 상관없이 실행되어야 하는 코드;
- *    		}
+ * 3. Calendar 클래스
+ *    - 날짜 / 시간과 관련된 정보를 제공해 주는 클래스.
+ *    - Calendar 클래스는 추상클래스임.
+ *    - 추상클래스로 작성한 이유 : 날짜와 시간을 계산하는 방법이
+ *                          나라, 지역마다 다르기 때문임.
+ *    - Calendar 클래스는 날짜와 시간을 계산하는데 꼭 필요한
+ *      메서드나 상수로 구성이 되어 있음.
+ *    - Calendar 클래스를 객체 생성을 하려면 Calendar 클래스가
+ *      가지고 있는 클래스(정적) 메서드인 getInstance() 메서드를
+ *      사용해야 함.
+ *    - getInstance() 메서드를 호출을 하면 내부적으로
+ *      java.util.GregorianCalendar 클래스의 객체를 생성하여
+ *      반환을 해 줌.
+ *    - GregorianCalendar 클래스는 Calendar 클래스의 자식 클래스임.
+ *    - getInstance() : 싱글턴 방식. 하나의 인스턴스만을 가지고
+ *                      공유해서 사용하고자 할 때 사용하는 방식.
  */
