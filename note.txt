@@ -1,5 +1,5 @@
 설치 사이트
 
-* 오라클 데이터베이스 : https://www.oracle.com/kr/java/technologies/javase-downloads.html
+* 오라클 데이터베이스 : https://www.oracle.com/database/technologies/xe-prior-release-downloads.html
 
 * SQL Developer : https://www.oracle.com/database/sqldeveloper/technologies/download/
