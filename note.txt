@@ -1,16 +1,21 @@
-create table dept10( 
-  deptno     number(2,0) primary key, 
-  dname      varchar2(14), 
-  loc        varchar2(13)
-);
+-- [문제1] 부서명이 'RESEARCH' 인 사원의
+--        사번, 이름, 급여, 부서명, 근무위치를 
+--        화면에 보여주세요.
 
 
--- DEPT 테이블에 데이터 추가
-insert into DEPT10 (DEPTNO, DNAME, LOC)
-	values(10, 'ACCOUNTING', 'NEW YORK');
-insert into dept10 
-	values(20, 'RESEARCH', 'DALLAS');
-insert into dept10 
-	values(30, 'SALES', 'CHICAGO');
-insert into dept10 
-	values(40, 'OPERATIONS', 'BOSTON');
+
+-- [문제2] emp 테이블에서 'NEW YORK'에 근무하는 사원의
+--        이름과 급여, 부서번호를 화면에 보여주세요.
+
+
+
+-- [문제3] emp 테이블에서 'ACCOUNTING' 부서 소속 사원의
+--        이름과 담당업무, 입사일 그리고 부서번호, 부서명을
+--        화면에 보여주세요.
+
+
+
+-- [문제4] emp 테이블에서 담당업무가 'SALESMAN' 인 사원의
+--        이름과 담당업무, 부서번호, 부서명, 근무위치를
+--        화면에 보여주세요.
+
