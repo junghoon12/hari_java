@@ -1,20 +1,16 @@
--- [문제1] emp 테이블에서 관리자(mgr)의 수를
---        구하여 화면에 보여주세요.
+create table dept10( 
+  deptno     number(2,0) primary key, 
+  dname      varchar2(14), 
+  loc        varchar2(13)
+);
 
 
-
--- [문제2] emp 테이블에서 보너스를 가진 사원의
---        수를 구하여 화면에 보여주세요.
-
-
-
--- [문제3] emp 테이블에서 모든 'SALESMAN'의 
---        급여 평균과 급여 최고액, 급여 최저액,
---        급여 합계액을 구하여 화면에 보여주세요.
-
-
-
--- [문제4] emp 테이블에서 등록되어 있는 사원의 총 수,
---        보너스가 null 이 아닌 사원 수, 보너스의
---        평균, 등록되어 있는 부서의 수를 구하여 
---        화면에 보여주세요.
+-- DEPT 테이블에 데이터 추가
+insert into DEPT10 (DEPTNO, DNAME, LOC)
+	values(10, 'ACCOUNTING', 'NEW YORK');
+insert into dept10 
+	values(20, 'RESEARCH', 'DALLAS');
+insert into dept10 
+	values(30, 'SALES', 'CHICAGO');
+insert into dept10 
+	values(40, 'OPERATIONS', 'BOSTON');
