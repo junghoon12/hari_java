@@ -1,103 +1,32 @@
--- member 테이블에 회원의 정보를 저장해 보자.
-insert into member
-    values(1, 'id1', '홍길동', '1111', 25, 0, '학생',
-            '부산시 동래구', '2013-08-08');
-
-insert into member
-    values(2, 'kimkd', '김길동', '2222', 30, 1500, '회사원',
-            '서울시 강남구', '2013-09-15');
-
-insert into member
-    values(3, 'id3', '공성현', '3333', 33, 10000, '회사원',
-            '부산시 중구', '2013-09-09');
-            
-insert into member
-    values(4, 'kimyh', '김영희', '4444', 18, 3000, '학생',
-            '경상남도 마산시', '2014-05-23');
-            
-insert into member
-    values(5, 'id5', '박말자', '5555', 45, 5000, '주부',
-            '경기도 남양주시', '2013-12-01');
-
-insert into member
-    values(6, 'id6', '김철수', '6666', 55, 0, '교수',
-            '제주도 서귀포시', '2013-01-10');
-
-insert into member
-    values(7, 'hong', '홍길동', '7777', 14, 0, '학생',
-            '경상북도 경주시', '2013-12-25');
-
-insert into member
-    values(8, 'id8', '김상현', '8888', 31, 0, '무직',
-            '서울시 마포구', '2013-04-22');
-
-insert into member
-    values(9, 'id9', '이지연', '9999', 25, 0, '학생',
-            '강원도 강릉시', '2013-10-10');
-
-insert into member
-    values(10, 'id10', '홍길동', '1010', 52, 10000, '무직',
-            '서울시 강북구', '2013-09-15');
+-- [문제1] emp 테이블에서 부서번호를 기준으로 오름차순 정렬을 하고,
+-- 부서번호가 같은 경우 급여를 기준으로 내림차순으로 정렬을 하여
+-- 화면에 보여주세요.
+-- 단, 급여가 같은 경우 사원번호를 기준으로 오름차순 정렬
 
 
--- 카테고리 테이블을 만들어 보자.
-create table category(
-    cnum number unique,                        -- 카테고리 번호
-    category_code varchar2(8),                 -- 카테고리 코드
-    category_name varchar2(30) not null,       -- 카테고리 이름
-    primary key(category_code)
-);
+--[문제2] products 테이블에서 판매가격을 기준으로 내림차순으로
+-- 정렬을 하여 모든 정보를 화면에 보여주세요.
 
 
--- 카테고리 테이블에 데이터를 저장해 보자.
-insert into category values(1, '00010000', '전자제품');
-insert into category values(2, '00010001', 'TV');
-insert into category values(3, '00010002', '컴퓨터');
-insert into category values(4, '00010003', '노트북');
-insert into category values(5, '00010004', '에어컨');
-insert into category values(6, '00020000', '의류제품');
-insert into category values(7, '00020001', '남방');
-insert into category values(8, '00020002', '속옷');
-insert into category values(9, '00020003', '바지');
-insert into category values(10, '00030000', '도서');
-insert into category values(11, '00030001', '컴퓨터도서');
-insert into category values(12, '00030002', '소설');
+-- [문제3] products 테이블에서 배송비를 기준으로 내림차순으로
+-- 정렬하세요. 단, 배송비가 같은 경우 마일리지를 기준으로
+-- 내림차순으로 정렬하여 모든 정보를 화면에 보여주세요.
 
 
--- 상품 정보 테이블을 만들어 보자.
-create table products(
-    pnum number(11) primary key,                   -- 제품 번호
-    category_fk varchar2(8) not null,              -- 카테고리 코드
-    products_name varchar2(50) not null,           -- 제품명
-    ep_code_fk varchar2(5) not null,               -- 제품 코드
-    input_price number(10) default 0 not null,     -- 제품 입고 가격
-    output_price number(10) default 0 not null,    -- 제품 출고 가격
-    trans_cost number(5) default 0 not null,       -- 제품 배송비
-    mileage number(6) default 0 not null,          -- 제품 마일리지
-    company varchar2(30),                          -- 제품 제조사
-    constraint category_ref foreign key(category_fk) 
-        references category(category_code)
-);
+-- [문제4] emp 테이블에서 입사일자가 오래된 사원부터 최근에 
+-- 입사한 사원을 기준으로 정렬하되, 사원명, 입사일자를
+-- 화면에 보여주세요.
 
--- 제품 데이터를 저장해 보자.
-insert into products
-   values(1, '00010001', 'S 벽걸이 TV', '00001', 5000000, 8000000, 0, 100000, '삼성');
-insert into products
-   values(2, '00010001', 'L TV', '00002', 1000000, 1500000, 0, 50000, 'LG');
-insert into products
-   values(3, '00010004', 'S 에어컨', '00001', 1000000, 1100000, 5000, 100000, '삼성');
-insert into products
-   values(4, '00010000', 'C 밥솥', '00003', 200000, 220000, 5500, 0, '쿠쿠');
-insert into products
-   values(5, '00010004', 'L 에어컨', '00003', 1200000, 1300000, 0, 0, 'LG');
-insert into products
-   values(6, '00020001', '남성난방', '00002', 100000, 150000, 2500, 0, '');
-insert into products
-   values(7, '00020001', '여성난방', '00002', 120000, 200000, 0, 0, '');
-insert into products
-   values(8, '00020002', '사각팬티', '00002', 10000, 20000, 0, 0, '보디가드');
-insert into products
-   values(9, '00020003', '멜빵바지', '00002', 15000, 18000, 0, 0, '');
-insert into products
-   values(10, '00030001', '무따기 시리즈', '00001', 25000, 30000, 2000, 0, '길벗');
 
+-- [문제5] emp 테이블에서 급여를 기준으로 내림차순으로 정렬을
+-- 하여 모든 정보를 화면에 보여주세요.
+
+
+-- [문제6] emp 테이블에서 급여가 1100 이상인 사원들의 정보를
+-- 보여주되, 입사일자가 빠른 순으로 정렬하여 화면에 보여주세요.
+
+
+-- [문제7] emp 테이블에서 부서번호를 기준으로 오름차순 정렬하여
+-- 나타내고, 부서번호가 같은 경우 담당업무를 기준으로 오름차순하여
+-- 정렬하세요. 만약 담당업무가 같다고 하면, 급여가 많은데서 적은
+-- 순으로 정렬하여 모든 정보를 화면에 보여주세요.
