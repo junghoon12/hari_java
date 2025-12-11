@@ -1,14 +1,80 @@
 data = """
+    {
+    "lastBuildDate": "Tue, 14 May 2024 10:55:45 +0900",
+    "total": 8732,
+    "start": 1,
+    "display": 10,
+    "items": [
         {
-          "id" : "01", "language" : "java", "edition" : "third", "author" : "임정훈",
-          "history" : 
-                  [{
-                        "date" : "2025-04-25",
-                        "item" : "IPhone"
-                      },
-                    {
-                        "date" : "2025-04-25",
-                        "item" : "Android"
-                      }]
+            "title": "세종대 산학협력단, 25일 SW코딩역량평가",
+            "originallink": "https://www.joongang.co.kr/article/25248996",
+            "link": "https://n.news.naver.com/mnews/article/025/0003360032?sid=102",
+            "description": "사용언어는 파이선(<b>Python</b>)과 C 중에서 선택할 수 있다. 채점은 세종대에서 개발한 온라인코딩평가시스템(OJ)을 통해 실시간으로 진행된다. 시험은 5월 25일(토) 오전 10시 30분부터 12시까지 90분간 진행된다.... ",
+            "pubDate": "Mon, 13 May 2024 17:30:00 +0900"
+        },
+        {
+            "title": "조시큐리티, 악성코드 정밀 분석 솔루션 조샌드박스 V40 '토르말린' 출시",
+            "originallink": "https://www.dailysecu.com/news/articleView.html?idxno=155917",
+            "link": "https://www.dailysecu.com/news/articleView.html?idxno=155917",
+            "description": "파이썬(<b>Python</b>)은 빠른 프로토타이핑을 가능하게 하며, 파이인스톨러를 사용하면 파이썬 사전 설치 없이도 윈도에서 파이썬을 실행할 수 있으므로, 탈취를 노리는 공격자들에게 매우 인기있는 타깃이다.... ",
+            "pubDate": "Mon, 13 May 2024 16:46:00 +0900"
+        },
+        {
+            "title": "조시큐리티, 악성코드 정밀 분석 솔루션 조샌드박스 V40 ‘토르말린’ 출시",
+            "originallink": "http://www.boannews.com/media/view.asp?idx=129723&kind=",
+            "link": "http://www.boannews.com/media/view.asp?idx=129723&kind=",
+            "description": "파이썬(<b>Python</b>)은 빠른 프로토타이핑을 가능하게 하며 파이인스톨러를 사용하면 파이썬 사전 설치 없이도 윈도에서 파이썬을 실행할 수 있다. 따라서 탈취를 노리는 공격자들에게 매우 인기 있는 타깃이... ",
+            "pubDate": "Mon, 13 May 2024 11:44:00 +0900"
+        },
+        {
+            "title": "조시큐리티, 악성코드 정밀 분석 솔루션 ‘조샌드박스 V40’ 공개",
+            "originallink": "https://www.hellot.net/news/article.html?no=89742",
+            "link": "https://www.hellot.net/news/article.html?no=89742",
+            "description": "파이썬(<b>Python</b>)은 빠른 프로토타이핑을 가능하게 하며 파이인스톨러를 사용하면 파이썬 사전 설치 없이도 윈도에서 파이썬을 실행할 수 있으므로 탈취를 노리는 공격자들에게 인기있는 타깃이다. 조샌드박스... ",
+            "pubDate": "Mon, 13 May 2024 11:20:00 +0900"
+        },
+        {
+            "title": "세종대, 제8회 SW코딩역량평가 '토스크' 개최",
+            "originallink": "https://www.newsis.com/view/?id=NISX20240513_0002732454&cID=10201&pID=10200",
+            "link": "https://n.news.naver.com/mnews/article/003/0012542126?sid=102",
+            "description": "사용언어는 파이선(<b>Python</b>)과 C 중에서 선택할 수 있다. 채점은 세종대에서 개발한 온라인코딩평가시스템(OJ)을 통해 실시간으로 진행된다. 시험은 오는 25일 오전 10시30분부터 12시까지 90분간 진행된다. 응시자는... ",
+            "pubDate": "Mon, 13 May 2024 10:04:00 +0900"
+        },
+        {
+            "title": "조시큐리티, 악성코드 정밀 분석 솔루션 '조샌드박스 V40 토르말린' 출시",
+            "originallink": "http://www.itdaily.kr/news/articleView.html?idxno=223052",
+            "link": "http://www.itdaily.kr/news/articleView.html?idxno=223052",
+            "description": "파이썬(<b>Python</b>)은 빠른 프로토타이핑을 가능하게 하며, 파이인스톨러를 사용하면 파이썬 사전 설치 없이도 윈도에서 파이썬을 실행할 수 있으므로 탈취를 노리는 공격자들에게 매우 인기있는 타깃이다.... ",
+            "pubDate": "Mon, 13 May 2024 09:38:00 +0900"
+        },
+        {
+            "title": "조시큐리티, 악성코드 정밀 분석 솔루션 조샌드박스 V40 '토르말린' 출시",
+            "originallink": "https://www.cctvnews.co.kr/news/articleView.html?idxno=237344",
+            "link": "https://www.cctvnews.co.kr/news/articleView.html?idxno=237344",
+            "description": "파이썬(<b>Python</b>)은 빠른 프로토타이핑을 가능하게 하며, 파이인스톨러를 사용하면 파이썬 사전 설치 없이도 윈도에서 파이썬을 실행할 수 있으므로, 탈취를 노리는 공격자들에게 매우 인기있는 타깃이다.... ",
+            "pubDate": "Mon, 13 May 2024 09:02:00 +0900"
+        },
+        {
+            "title": "세종대, 제8회 SW코딩역량평가(TOSC) 개최",
+            "originallink": "http://www.wsobi.com/news/articleView.html?idxno=240284",
+            "link": "http://www.wsobi.com/news/articleView.html?idxno=240284",
+            "description": "사용언어는 파이선(<b>Python</b>)과 C 중에서 선택할 수 있다. 채점은 세종대에서 개발한 온라인코딩평가시스템(OJ)을 통해 실시간으로 진행된다. 시험은 5월 25일 오전 10시 30분부터 12시까지 90분간 진행된다. 응시자는... ",
+            "pubDate": "Mon, 13 May 2024 08:16:00 +0900"
+        },
+        {
+            "title": "세종대, 제8회 SW코딩역량평가(TOSC) 개최",
+            "originallink": "https://www.naeil.com/news/read/510121?ref=naver",
+            "link": "https://www.naeil.com/news/read/510121?ref=naver",
+            "description": "사용언어는 파이선(<b>Python</b>)과 C 중에서 선택할 수 있다. 채점은 세종대에서 개발한 온라인코딩평가시스템(OJ)을 통해 실시간으로 진행된다. 시험은 25일 오전 10시 30분부터 12시까지 90분간 진행된다. 응시자는 오전... ",
+            "pubDate": "Sun, 12 May 2024 22:00:00 +0900"
+        },
+        {
+            "title": "세종대, 'SW코딩역량평가'(TOSC) 개최",
+            "originallink": "http://www.m-i.kr/news/articleView.html?idxno=1119563",
+            "link": "http://www.m-i.kr/news/articleView.html?idxno=1119563",
+            "description": "사용언어는 파이선(<b>Python</b>)과 C 중에서 선택할 수 있다. 채점은 세종대에서 개발한 온라인코딩평가시스템(OJ)을 통해 실시간으로 진행된다. 초·중·고는 물론 대학생과 일반인 등 누구나 응시할 수 있다. 신청은... ",
+            "pubDate": "Sun, 12 May 2024 10:44:00 +0900"
         }
-       """
+    ]
+}
+"""
