@@ -1,32 +1,6 @@
-<%--
-	    기본적인 JSTL 태그 ==> 출력을 할 때는 EL 언어를 사용. 
-	   
-	    1. 변수 태그(set)
-	       <c:set var="변수명" value="값"> </c:set>
-	            예) <c:set var="su" value="10" />  ==>  int su = 10;
-	          <c:set var="str" value="Hello" /> ==> String str = "hello";
-	
-	    2. 출력 태그(out)
-	       <c:out value="변수명"> </c:out>
-	            예) <c:out value="str"> ==> Hello
-	
-		3. 삭제 태그(remove)
-		   <c:remove var="변수명"> </c:remove>
-	            예) <c:remove var="str">
-	    
-	    4. 조건 처리 태그(if문) ==> else 문이 없음.
-	       <c:if test="조건식" var="변수명"> </c:if>
-	    
-	    5. 조건 처리 태그(choose문) ==> switch~case문과 유사함.
-	       <c:choose>
-	          <c:when test="조건식1">조건식1이 참인 경우 실행문장</c:when>
-	          <c:when test="조건식2">조건식2이 참인 경우 실행문장</c:when>
-	          <c:when test="조건식3">조건식3이 참인 경우 실행문장</c:when>
-	          <c:otherwise>상기 조건식 이외의 경우 실행문장</c:otherwise>	       
-	       </c:choose>
-	    
-	    6. 반복문(forEach문) : for문과 유사함.
-	       <c:forEach begin="시작값" end="끝값" step="증감값" var="변수명"> </c:forEach>
-	    
-	       <c:forEach items="객체명" var="변수명">
-	--%>
+사이트 주소 : https://mvnrepository.com/ 
+
+받을 라이브러리 파일
+1. jakarta.servlet.jsp.jstl-api-3.0.0.jar
+
+2. jakarta.servlet.jsp.jstl-3.0.1.jar
