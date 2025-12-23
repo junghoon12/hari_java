@@ -1,64 +1,32 @@
-# EL(Expression Language : 표현 언어)
-  - 표현 언어라고 함.
-  - JSP 2.0 이후 버전부터 사용이 가능함.
-  - 자바 코드가 들어가는 표현식(<%=  %> or <%  %>)을 좀 더 편리하게
-    사용하는 데이터 출력 기능임.
-  - 자바 코드를 사용해야 했던 모든 곳에 표현 언어를 사용할 수 있음.
-  - 라이브러리 없이 사용이 가능함.
-  - 표현 언어의 특징.
-    * 기존의 표현식보다 편리하게 값을 출력할 수 있음.
-    * 변수와 여러 가지 연산자를 포함할 수 있음.
-    * JSP 내장 객체에 저장된 속성 및 자바 빈(bean) 속성도 표현 언어로
-      출력할 수 있음.
-    * 표현 언어 자체의 내장 객체도 지원이 됨.
-  - 표현 언어 형식
-       예) <%=변수 %>  ====> ${변수(수식) }
-  - 표현 언어의 연산자 종류
-    * 산술연산자 : +, -, *, /(div), %(mod)
-    * 관계(비교)연산자
-      == or eq : 두 수의 값이 같은지 비교함.
-      != or ne : 두 수의 값이 다른지 비교함.
-      >= or ge : 값이 다른 값보다 크거나 같은지 비교함.
-      > or gt : 값이 다른 값보다 큰지 비교함.
-      <= or le : 값이 다른 값보다 작거나 같은지 비교함.
-      < or lt : 값이 다른 값보다 작은지 비교함.
-    * 논리연산자
-      && or and : 논리곱 연산을 함.
-      || or or : 논리합 연산을 함.
-      ! or not : 부정 연산을 함.
-    * empty 연산자
-      empty : 값이 null이거나 빈 문자열이면 true 값을 반환함.
-      
-  - 표현 언어에서 제공하는 내장객체
-    * page : 현재 페이지의 범위에만 한정됨. 페이지가 끝나면 유효하지 않게 됨.
-    * request : request 생명 주기는 request 요청을 받고, 요청에 대한 
-                             처리를 완료하는 시점까지만 한정됨.
-    * session : session의 생명 주기는 설정된 유효 시간이 기준이 됨.
-    * application : 웹 사이트가 실행되는 동안만 유효하게 됨. 어플리케이션이
-                                    종료가 되면 유효하지 않게 됨.
-    * param : 파라미터 값을 얻어올 때 사용함.
-    * paramValues : 파라미터 값을 배열로 얻어올 때 사용함.
-    
-    ※ 내장 객체를 사용할 때는 map 자료 구조 형태로 key, value 값을 저장.
-    setAttribute(String key, Object value)
-    getAttribute(String key)
-
-=======================================================================================
-
-# JSTL(JSP Standard Tag Library)
-  
-  - JSP 페이지에서 스크립트릿과 HTML 코드가 
-    뒤섞이게 되는 현상이 발생을 함.
-    이렇게 뒤섞인 코드는 알아보기가 쉽지 않게
-    되는 단점이 발생함.
-    
-  - JSP 페이지에서 스크립트릿에 들어가는 자바  
-    코드 중에 논리적인 판단, 반복 처리, 포맷
-    처리 등을 HTML 태그처럼 사용할 수 있도록
-    표준으로 만들어 정의한 것이 JSTL 라이브러리임.
-    
-  - JSTL을 사용하기 위해서는 라이브러리 파일이 필요함.
-    * jstl.jar, standard.jar
-    
-  - JSTL 라이브러리 파일을 받는 사이트 주소
-    http://tomcat.apache.org/taglibs/standard/
+<%--
+	    기본적인 JSTL 태그 ==> 출력을 할 때는 EL 언어를 사용. 
+	   
+	    1. 변수 태그(set)
+	       <c:set var="변수명" value="값"> </c:set>
+	            예) <c:set var="su" value="10" />  ==>  int su = 10;
+	          <c:set var="str" value="Hello" /> ==> String str = "hello";
+	
+	    2. 출력 태그(out)
+	       <c:out value="변수명"> </c:out>
+	            예) <c:out value="str"> ==> Hello
+	
+		3. 삭제 태그(remove)
+		   <c:remove var="변수명"> </c:remove>
+	            예) <c:remove var="str">
+	    
+	    4. 조건 처리 태그(if문) ==> else 문이 없음.
+	       <c:if test="조건식" var="변수명"> </c:if>
+	    
+	    5. 조건 처리 태그(choose문) ==> switch~case문과 유사함.
+	       <c:choose>
+	          <c:when test="조건식1">조건식1이 참인 경우 실행문장</c:when>
+	          <c:when test="조건식2">조건식2이 참인 경우 실행문장</c:when>
+	          <c:when test="조건식3">조건식3이 참인 경우 실행문장</c:when>
+	          <c:otherwise>상기 조건식 이외의 경우 실행문장</c:otherwise>	       
+	       </c:choose>
+	    
+	    6. 반복문(forEach문) : for문과 유사함.
+	       <c:forEach begin="시작값" end="끝값" step="증감값" var="변수명"> </c:forEach>
+	    
+	       <c:forEach items="객체명" var="변수명">
+	--%>
