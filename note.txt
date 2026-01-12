@@ -1,3 +1,4 @@
 스프링 sts 프로그램 다운로드 사이트 주소 : https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3
 
-open jdk 8 버전 다운로드 사이트 : https://github.com/ojdkbuild/ojdkbuild 
+
+jdk 8 버전 다운로드 사이트 : https://www.oracle.com/kr/java/technologies/javase/javase8-archive-downloads.html
