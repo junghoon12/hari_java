@@ -1,1 +1,1 @@
-table += "<td id='tdDel'> <input type='button' value='삭제' id='del' num='"+$(this).find("num").text()+"'></td>";
+https://github.com/spring-attic/toolsuite-distribution/wiki/Spring-Tool-Suite-3
