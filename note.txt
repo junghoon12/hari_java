@@ -1,22 +1,48 @@
-/*
- * DI 설정 시 Java 코드에서 에노테이션을 설정하여 주입하는 방법.
- * 
- * - @Configuration, @Bean 애노테이션을 사용함.
- * 
- * - @Configuration : 클래스 앞에 선언하는 애노테이션.
- *                    "해당 클래스는 스프링 설정에 사용되는
- *                     클래스입니다." 라고 알려주는 애노테이션.
- *                     
- * - @Bean : 메서드 앞에 사용되는 애노테이션.
- *           "해당 메서드는 객체를 생성하는데 사용됩니다." 라고
- *           얄려 주는 에노테이션.
- *          
- * - 애노테이션의 역할.
- *   * 컴파일러에게 정보를 알려주는 역할.
- *   * 컴파일 할 때와 설치 시의 작업을 지정하는 역할.
- *   * 실행할 때에 별도의 처리가 필요한 경우 사용되는 역할.
- *   
- * - 주의 : 자바 코드에서 DI를 적용시에는 반드시 cglib 라는
- *        라이브러리가 필요함.
- *        ==> pom.xml 파일에 라이브러리를 추가해 주어야 함.
- */  
+# JDBC(Java DataBase Connectivity)
+
+  - JDBC는 DB에 접근할 수 있도록 Java에서 제공하는 API임.
+  
+  - JDBC는 데이터베이스에서 자료를 쿼리하거나 업데이트 하는 방법을
+        제공함.
+    
+  - JDBC API의 문제점.
+    1. 쿼리를 실행하기 전과 후에 많은 양의 코드를 작성해야 함.
+       예) 오라클 드라이버 로딩, DB와 연결 생성, 명령문(쿼리문),
+        ResultSet 객체 연결, 연결 객체 닫기 등등
+    2. 데이터베이스 로직에서 예외 처리 코드를 수행해야 함.
+    3. 1과 2의 코드를 메소드 호출 시 마다 반복적으로 작성해야 함.
+    
+    
+# Spring JDBCTempate?
+  - JDBCTemplate 은 Spring JDBC 접근 방법 중 하나임.
+  
+  - 내부적으로 JDBC API를 사용하지만, 위의 내용과 같은 문제점을
+        제거한 형태로 Spring에서 제공하는 클래스임.
+    
+    ※ Spring JDBC가 하는 일.
+      - Connection 열기와 닫기.
+      - PreparedStatement 준비와 닫기.
+      - PreparedStatement 실행.
+      - ResultSet Loop 처리.
+      - Exception(예외) 처리.
+      - Transaction 처리
+      
+  - Spring JDBC에서 개발자가 할 일은 핵심적으로 해야 할 작업만
+        해 주면 나머지는 Spring Framework에서 알아서 처리를 해 줌.
+    
+
+# DataSource?
+  - DataSource 는 JDBC 명세서의 일부분이면서 일반적으로 DB 연결 공장.
+        즉, DB와 관련된 Connection(JDBC 방식) 정보를 담고 있음.
+    
+    * DB 종류(oracle.jdbc.driver.OracleDriver)
+    * url 정보(jdbc:oracle:thin:@localhost:1521:XE)
+    * 계정 정보(kdt)
+    * 계정 비밀번호 정보(1234)
+    
+
+# Spring JDBCTemplate 클래스를 사용하기 위해서는 pom.xml 파일에
+    아래와 같은 라이브러리를 추가해 주어야 함.
+  
+  * spring-jdbc 라이브러리
+  * commons-dbcp2 라이브러리 (DBCP 방식)
