@@ -1,1 +1,1 @@
-https://drive.google.com/drive/folders/1BKmkTQZn3gZpJP76zhAJdxhl0jt-ishL?hl=ko
+powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
